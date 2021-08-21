@@ -28,7 +28,7 @@ export class KafkaService {
                 ]
              });
             this.INSTANCE.kafkaConsumer = this.INSTANCE.kafkaClient.consumer({
-                groupId: WALLET_FINANCE_SERVICE
+                groupId: WALLET_TRANSFERS_SERVICE
             });
             this.INSTANCE.kafkaProducer = this.INSTANCE.kafkaClient.producer(<ProducerConfig>{
                 
