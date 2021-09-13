@@ -1,5 +1,5 @@
-import { Account } from "../db/models/account";
-import accountModel from "../db/models/account";
+import { Account } from "../models/account";
+import accountModel from "../models/account";
 
 export interface AccountRepo{
     getAccount(walletId: String): Promise<Account>;
@@ -14,8 +14,8 @@ export class AccountRepoImpl implements AccountRepo{
     
     async updateAccount(account: Account): Promise<Account> {
         const acc = await this.getAccount(account.walletId);
-        acc.balance = account.balance;
-        return await accountModel.findOneAndUpdate(acc);
+        const updated = {...acc, balance: account.balance};
+        return await accountModel.findOneAndUpdate({...updated});
     }
 
     async getAccount(walletId: String): Promise<Account> {
