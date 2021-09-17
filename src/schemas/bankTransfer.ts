@@ -1,12 +1,25 @@
 import { Schema } from "mongoose";
 
-export default new Schema({
-    nuban: {
+const bankTransferSchema = new Schema({
+    sourceWalletId: {
+        type: String,
+        required: [true, "sourceWalletId cannot be empty"]
+    },
+    acctName: {
+        type: String,
+    },
+    bankId: {
         type: String,
         required: [true, "nuban cannot be empty"]
     },
-    bankAccount:{
+
+    destinationAccount:{
         type:  String,
         required: [true, "bankAccount cannot be empty"]
+    },
+    swiftCode: {
+        type: String,
     }
 });
+
+export default bankTransferSchema;

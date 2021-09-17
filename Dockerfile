@@ -23,7 +23,7 @@ WORKDIR /app/src
 
 RUN yarn install
 
-EXPOSE 8000
+EXPOSE 8003
 
 CMD ["yarn", "start"]
 

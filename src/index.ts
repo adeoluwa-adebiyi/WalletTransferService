@@ -2,17 +2,11 @@ import { Consumer as KafkaConsumer, EachBatchPayload, Kafka, KafkaConfig } from 
 import * as topics from "./topics";
 import config from "../src/config";
 import { KafkaService } from "./kafka";
-import { WalletCreditMessage } from "./processors/messages/WalletCreditMessage";
 import { connect } from "./db/connection";
 import app from "./app";
 import { Message } from "./processors/messages/interface/message";
-import { WALLET_CREATED, WALLET_CREDIT } from "./message_types";
 import { matchMessage } from "./helpers/messages";
 import TransferService, { TransferRequestMessage } from "./services/transferService";
-import { WalletCreatedMessage } from "./processors/messages/account-created-msg";
-import { WalletTransferMoneyMessage } from "./processors/messages/wallet-transfer-money-message";
-import { UserAccountBalance, USER_ACCOUNT_BALANCE_MSG } from "./processors/messages/UserAccountBalance";
-import AccountService from "./services/accountService";
 import { TransferVerificationMessage } from "./processors/messages/TransferVerificationMessage";
 
 export const WALLET_TRANSFER_REQUEST_MSG = "wallet-transfer-money-message";
