@@ -35,6 +35,7 @@ export class BankPayoutMessage implements Message, BankPayoutParams {
     description: String;
     currency: String;
     acctName?: String;
+    key?: String;
 
     constructor(params?: BankPayoutParams) {
         this.requestId = params?.requestId;
@@ -55,8 +56,12 @@ export class BankPayoutMessage implements Message, BankPayoutParams {
         return this.version;
     }
 
-    getKey(): string {
-        throw new Error("Method not implemented.");
+    getKey(): String {
+        return this.key;
+    }
+
+    setKey(key: String){
+        this.key = key;
     }
 
     serialize(): string {
@@ -76,7 +81,8 @@ export class BankPayoutMessage implements Message, BankPayoutParams {
                 description: this?.description,
                 sourceWalletId: this?.sourceWalletId,
                 country: this?.country
-            }
+            },
+            key: this.key
         });
     }
 

@@ -20,9 +20,13 @@ const processTrxEvents = async ()=>{
         autoCommit:true,
         eachBatch: async(payload: EachBatchPayload) => {
             for (let message of payload.batch.messages){
-                console.log(message);
-                // matchMessage(USER_ACCOUNT_BALANCE_MSG, message.value.toString(), new UserAccountBalance(), handleUserAccountBalanceEvent);
-                matchMessage(TRANSFER_VERIFICATION_MSG, message.value.toString(), new TransferVerificationMessage(), handleTransferVerificationEvent)
+                try{
+                    console.log(message.key.toString());
+                    // matchMessage(USER_ACCOUNT_BALANCE_MSG, message.value.toString(), new UserAccountBalance(), handleUserAccountBalanceEvent);
+                    matchMessage(TRANSFER_VERIFICATION_MSG, message.value.toString(), new TransferVerificationMessage(), handleTransferVerificationEvent, message.key.toString())
+                }catch(e){
+                    console.log(e);
+                }
             }
         }
     })
@@ -38,6 +42,8 @@ export interface MessageHandler{
 // }
 
 const handleTransferVerificationEvent = async(message: TransferVerificationMessage) => {
+    console.log("KEY:");
+    console.log(message);
     TransferService.processTransferVerificationRequestMessage(message);
 }
 

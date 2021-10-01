@@ -17,6 +17,7 @@ export const authorizeTransferRequest = async(req:any, res:any) => {
         });
 
     }catch(e){
+        console.log(e);
         res.json({
             status: "failure",
             error: e.message

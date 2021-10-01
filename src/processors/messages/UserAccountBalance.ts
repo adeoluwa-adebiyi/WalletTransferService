@@ -27,6 +27,9 @@ export class UserAccountBalance implements Message, UserAccountBalanceParams {
         this.time = params?.time;
         this.walletId = params?.walletId;
     }
+    setKey(key: String) {
+        this.key = key;
+    }
 
     getVersion(): string {
         return this.version.toString();
@@ -46,7 +49,8 @@ export class UserAccountBalance implements Message, UserAccountBalanceParams {
                 time: this.time,
                 userId: this.userId,
                 walletId: this.walletId
-            }
+            },
+            key: this.key
         })
     }
 
@@ -58,6 +62,7 @@ export class UserAccountBalance implements Message, UserAccountBalanceParams {
         this.time = data.time;
         this.userId = data.userId;
         this.walletId = data.walletId;
+        this.key = object.key;
         return this;
     }
 

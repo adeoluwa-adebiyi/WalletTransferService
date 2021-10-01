@@ -1,6 +1,10 @@
 import { Message } from "./interface/message";
 
 export class WalletCreditMessage implements Message{
+    key?: String;
+    setKey(key: String) {
+        this.key = key;
+    }
     entityId: String;
     version: String = "1";
     name: String = "credit";
@@ -15,8 +19,8 @@ export class WalletCreditMessage implements Message{
         throw new Error("Method not implemented.");
     }
 
-    getKey(): string {
-        throw new Error("Method not implemented.");
+    getKey(): String {
+        return this.key;
     }
 
     serialize(): string {
@@ -29,7 +33,8 @@ export class WalletCreditMessage implements Message{
                 currency: this.currency,
                 walletId: this.walletId,
                 userId: this.userId
-            }
+            },
+            key: this.key
         })
     }
 
@@ -42,6 +47,7 @@ export class WalletCreditMessage implements Message{
         this.currency = data.currency;
         this.walletId = data.walletId;
         this.userId = data.userId;
+        this.key = object.key;
         return this;
     }
 }

@@ -8,11 +8,13 @@ export interface Message{
 
     data: any;
 
-    key?: String
+    key?: any;
 
     getVersion(): string;
 
-    getKey(): string;
+    getKey(): String;
+
+    setKey(key: any);
 
     serialize(): string;
 
